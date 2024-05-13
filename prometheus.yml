@@ -1,0 +1,18 @@
+		global:
+		  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+		  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+		
+		alerting:
+		  alertmanagers:
+		    - static_configs:
+		        - targets:
+		          # - alertmanager:9093
+		rule_files:
+      # Localhost monitoring, to monitor prometheus itself
+		  - job_name: "prometheus"
+		    static_configs:
+		      - targets: ["localhost:9090"]
+      # Kafka monitoring
+		  - job_name: "kafka"
+		    static_configs:
+      - targets: ["172.31.2.8:8091","172.31.10.179:8091"]
