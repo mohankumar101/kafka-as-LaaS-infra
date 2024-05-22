@@ -1,0 +1,33 @@
+- name: Update package lists (choose based on OS family)
+  tags: kafka, streaming, infra
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update package lists (choose based on OS family)
+  tags: kafka, streaming, infra
+  yum:
+    name: '*'
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Install OpenJDK
+  tags: kafka, streaming, infra
+  apt:
+    name: default-jdk
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install OpenJDK
+  tags: kafka, streaming, infra
+  yum:
+    name: java-17-openjdk-devel
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Create Kafka user and group
+  tags: kafka, streaming, infra
+  user:
+    name: kafka
+    group: kafka
+    system: yes

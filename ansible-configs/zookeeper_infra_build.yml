@@ -1,0 +1,5 @@
+---
+- hosts: service_zookeeper
+  become: true
+  roles:
+    - zookeeper

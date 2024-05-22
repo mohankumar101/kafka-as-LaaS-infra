@@ -1,0 +1,3 @@
+---
+# defaults file for kafka
+motd_message: "This is a securely monitored infra!"
