@@ -62,13 +62,13 @@ resource "aws_security_group" "allow_kafka_traffic" {
         content {
         from_port = port.value
         to_port =  port.value
-        protocol = "TCP"
-        cidr_blocks = ["10.0.0.0/24"]
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
         }
     }
   
   tags = {
-    Name = "Allow Kafka traffic SG group"
+    Name = "Kafka Security Group - Allows kafka ingress and open egress"
   }
 }
 
@@ -102,12 +102,12 @@ resource "aws_security_group" "allow_zk_traffic" {
         content {
         from_port = port.value
         to_port =  port.value
-        protocol = "TCP"
-        cidr_blocks = ["10.0.0.0/24"]
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
         }
     }
   
   tags = {
-    Name = "Allow ZK traffic SG group"
+    Name = "Zookeeper Security Group - Allows kafka ingress and open egress"
   }
 }
