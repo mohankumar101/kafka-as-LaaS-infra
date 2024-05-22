@@ -1,0 +1,6 @@
+---
+- hosts: service_kafka
+  become: true
+  roles:
+    - kafka
+

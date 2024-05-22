@@ -1,0 +1,4 @@
+server.id={{ kafka_server_ids[ansible_play_batch_index] }}
+listeners=PLAINTEXT://:9092
+advertised.listeners=PLAINTEXT://172.31.2.8:9092
+zookeeper.connect=172.31.2.8:2181,172.31.10.179:2181

@@ -1,0 +1,34 @@
+- name: Update package lists (choose based on OS family)
+  tags: zookeeper, streaming, infra
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update package lists (choose based on OS family)
+  tags: zookeeper, streaming, infra
+  yum:
+    name: '*'
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Install OpenJDK
+  tags: zookeeper, streaming, infra
+  apt:
+    name: default-jdk
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install OpenJDK
+  tags: zookeeper, streaming, infra
+  yum:
+    name: java-17-openjdk-devel
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Create zookeeper user and group
+  tags: zookeeper, streaming, infra
+  user:
+    name: zookeeper
+    group: zookeeper
+    system: yes
+
